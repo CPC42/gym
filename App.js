@@ -5,6 +5,7 @@ import React from "react";
 import Home from "./screens/Home";
 import Login from "./screens/Login";
 import Signup from "./screens/Signup";
+import Workout from "./screens/Workout";
 
 const Stack = createStackNavigator();
 
@@ -14,6 +15,7 @@ function App() {
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Signup" component={Signup} />
       <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Workout" component={Workout} />
     </Stack.Navigator>
   );
 }

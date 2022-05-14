@@ -26,10 +26,12 @@ function Home() {
       </View>
 
       <View style={CommonStyles.tinyLogo}>
-        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+        <TouchableOpacity onPress={() => navigation.navigate("Workout")}>
           <Image
-            style={styles.tinyLogo}
-            source={{ uri: "../styles/images/gear.png" }}
+            style={CommonStyles.tinyLogo}
+            source={{
+              uri: "https://st.depositphotos.com/1002881/2704/i/600/depositphotos_27048483-stock-photo-cogwheels.jpg",
+            }}
           />
         </TouchableOpacity>
       </View>
