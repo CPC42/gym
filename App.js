@@ -9,8 +9,6 @@ import Workout from "./screens/Workout";
 const Stack = createStackNavigator();
 
 
-
-
 function App() {
   const [users, setUsers] = useState();
   return (
