@@ -5,6 +5,7 @@ import { StatusBar } from "expo-status-bar";
 import { NativeBaseProvider } from "native-base";
 import React from "react";
 import { Text, View, TouchableOpacity, Image, Button } from "react-native";
+
 import { CommonStyles } from "../styles/CommonStyles";
 
 function Workout() {

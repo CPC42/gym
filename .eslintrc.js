@@ -1,4 +1,3 @@
 module.exports = {
-    extends: 'universe/native',
-  };
-  
+  extends: "universe/native",
+};

@@ -3,14 +3,13 @@ import { createStackNavigator } from "@react-navigation/stack";
 import React, { useState } from "react";
 import { UsersContextProvider } from "./contexts/UsersContext";
 import Home from "./screens/Home";
-import Login from "./screens/Login";
 import Signup from "./screens/Signup";
+import Login from "./screens/Login";
 import Workout from "./screens/Workout";
 
 const Stack = createStackNavigator();
 
 function App() {
-  const [users, setUsers] = useState();
   return (
     <UsersContextProvider>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
