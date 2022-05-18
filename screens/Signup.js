@@ -4,6 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import { Input, NativeBaseProvider, Button, Icon, Alert } from "native-base";
 import React from "react";
 import { Text, View, TouchableOpacity } from "react-native";
+
 import { CommonStyles } from "../styles/CommonStyles";
 
 function Signup() {

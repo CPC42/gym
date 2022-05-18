@@ -13,6 +13,11 @@ export const CommonStyles = StyleSheet.create({
     top: 5,
     right: 5,
   },
+  calendar: {
+    flex: 1,
+    top: 45,
+  },
+
   LoginText: {
     marginTop: 100,
     fontSize: 30,
@@ -104,5 +109,13 @@ export const CommonStyles = StyleSheet.create({
     marginLeft: 50,
     marginRight: 50,
     marginTop: 20,
+  },
+  dateText: {
+    backgroundColor: "white",
+    flex: 1,
+    borderRadius: 5,
+    padding: 10,
+    marginRight: 10,
+    marginTop: 17,
   },
 });
