@@ -1,22 +1,3 @@
-<<<<<<< HEAD
-import { StatusBar } from "expo-status-bar";
-import { NativeBaseProvider } from "native-base";
-import React, { useContext, useState } from "react";
-import { View, TouchableOpacity, Text, Image } from "react-native";
-import { Agenda } from "react-native-calendars";
-import { Card, Avatar } from "react-native-paper";
-import { useNavigation } from "@react-navigation/native";
-import { CommonStyles } from "../styles/CommonStyles";
-import { UsersContext } from "../contexts/UsersContext";
-
-const timeToString = (time) => {
-  const date = new Date(time);
-  return date.toISOString().split("T")[0];
-};
-
-function Schedule() {
-  const usersContext = useContext(UsersContext);
-=======
 import React, { useState } from "react";
 import {
   Alert,
@@ -33,7 +14,6 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 
 const App = () => {
->>>>>>> 9841133f5b4f23ae6b7b12cc2b88028c0a4a3572
   const navigation = useNavigation();
 
   const [modalVisible, setModalVisible] = useState(false);
