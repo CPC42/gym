@@ -4,6 +4,11 @@ export const CommonStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    top: 20,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: "bold",
   },
   tinyLogo: {
     width: 50,
@@ -117,5 +122,20 @@ export const CommonStyles = StyleSheet.create({
     padding: 10,
     marginRight: 10,
     marginTop: 17,
+  },
+  separator: {
+    marginVertical: 30,
+    height: 1,
+    width: "80%",
+  },
+  modal: {
+    flex: 1,
+    alignItems: "center",
+    backgroundColor: "#00ff00",
+    padding: 100,
+  },
+  text: {
+    color: "#3f2949",
+    marginTop: 10,
   },
 });

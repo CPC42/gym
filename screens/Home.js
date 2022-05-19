@@ -1,33 +1,57 @@
+import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { NativeBaseProvider } from "native-base";
-import React, { useState } from "react";
-import { View, TouchableOpacity, Text, Image } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  View,
+  TouchableOpacity,
+  Text,
+  Image,
+  Button,
+  SafeAreaView,
+  TouchableWithoutFeedback,
+} from "react-native";
+import Modal from "react-native-modal";
+
 import { Agenda } from "react-native-calendars";
 import { Card, Avatar } from "react-native-paper";
-import { useNavigation } from "@react-navigation/native";
+
 import { CommonStyles } from "../styles/CommonStyles";
+import { addDays, format } from "date-fns";
 
 const timeToString = (time) => {
   const date = new Date(time);
   return date.toISOString().split("T")[0];
 };
 
+const getWeekday = (time) => {
+  const weekday = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  const date = new Date(time);
+  return weekday[date.getDay()];
+};
+
 function Schedule() {
   const navigation = useNavigation();
 
-  let typeWorkout = "hard";
+  const typeWorkout = "light";
 
-  let dateValue = [{ name: "Chest day" }];
-  let date = "2022-05-18";
+  var today = new Date().toISOString().slice(0, 10);
 
-  let [items, setItems] = useState({
-    "2022-05-17": dateValue,
-    date: dateValue,
-  });
+  // values = { [date]: [{ name: "Arms day" }], [today]: [{ name: "Leg day" }] };
+
+  let [items, setItems] = useState({});
 
   const loadItems = (day) => {
     setTimeout(() => {
-      for (let i = -15; i < 85; i++) {
+      for (let i = -15; i < 155; i++) {
         const time = day.timestamp + i * 24 * 60 * 60 * 1000;
         const strTime = timeToString(time);
         if (!items[strTime]) {
@@ -38,6 +62,121 @@ function Schedule() {
             },
           ];
         }
+        //const current_day = strTime.slice(-2);
+        //console.log(current_day);
+        const current_Weekday = getWeekday(time);
+        console.log(typeWorkout);
+
+        if (typeWorkout == "light") {
+          if (current_Weekday == "Monday") {
+            items[strTime] = [
+              {
+                name: "Push day",
+                height: Math.max(50, Math.floor(Math.random() * 150)),
+              },
+            ];
+          }
+          if (current_Weekday == "Wednesday") {
+            items[strTime] = [
+              {
+                name: "Pull day",
+                height: Math.max(50, Math.floor(Math.random() * 150)),
+              },
+            ];
+          }
+          if (current_Weekday == "Friday") {
+            items[strTime] = [
+              {
+                name: "Leg day",
+                height: Math.max(50, Math.floor(Math.random() * 150)),
+              },
+            ];
+          }
+        }
+        if (typeWorkout == "medium") {
+          if (current_Weekday == "Monday") {
+            items[strTime] = [
+              {
+                name: "Chest & Triceps",
+                height: Math.max(50, Math.floor(Math.random() * 150)),
+              },
+            ];
+          }
+          if (current_Weekday == "Tuesday") {
+            items[strTime] = [
+              {
+                name: "Back & Biceps day",
+                height: Math.max(50, Math.floor(Math.random() * 150)),
+              },
+            ];
+          }
+          if (current_Weekday == "Thursday") {
+            items[strTime] = [
+              {
+                name: "Leg day",
+                height: Math.max(50, Math.floor(Math.random() * 150)),
+              },
+            ];
+          }
+          if (current_Weekday == "Saturday") {
+            items[strTime] = [
+              {
+                name: "Shoulders",
+                height: Math.max(50, Math.floor(Math.random() * 150)),
+              },
+            ];
+          }
+        }
+        if (typeWorkout == "hard") {
+          if (current_Weekday == "Monday") {
+            items[strTime] = [
+              {
+                name: "Chest & Triceps",
+                height: Math.max(50, Math.floor(Math.random() * 150)),
+              },
+            ];
+          }
+          if (current_Weekday == "Tuesday") {
+            items[strTime] = [
+              {
+                name: "back & Biceps",
+                height: Math.max(50, Math.floor(Math.random() * 150)),
+              },
+            ];
+          }
+          if (current_Weekday == "Wednesday") {
+            items[strTime] = [
+              {
+                name: "Leg day",
+                height: Math.max(50, Math.floor(Math.random() * 150)),
+              },
+            ];
+          }
+          if (current_Weekday == "Thursday") {
+            items[strTime] = [
+              {
+                name: "Arms & Abs",
+                height: Math.max(50, Math.floor(Math.random() * 150)),
+              },
+            ];
+          }
+          if (current_Weekday == "Friday") {
+            items[strTime] = [
+              {
+                name: "Shoulders day",
+                height: Math.max(50, Math.floor(Math.random() * 150)),
+              },
+            ];
+          }
+          if (current_Weekday == "Saturday") {
+            items[strTime] = [
+              {
+                name: "Leg day - Cardio Day",
+                height: Math.max(50, Math.floor(Math.random() * 150)),
+              },
+            ];
+          }
+        }
       }
       const newItems = {};
       Object.keys(items).forEach((key) => {
@@ -47,24 +186,39 @@ function Schedule() {
     }, 1000);
   };
 
+  //const [isModalVisible, setIsModalVisible] = React.useState(true);
+  //const handleModal = () => setIsModalVisible(() => !isModalVisible);
+
+  const displayWorkout = (item) => {
+    console.log("Pressed here " + item.name);
+    return (
+      <View style={styles.container}>
+        <Text style={CommonStyles.title}>
+          This is the workout for {item.name}
+        </Text>
+      </View>
+    );
+  };
+
+  const [isModalVisible, setModalVisible] = useState(true);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
   const renderItem = (item) => {
     return (
-      <TouchableOpacity style={CommonStyles.dateText}>
-        <Card>
-          <Card.Content>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <Text>{item.name}</Text>
-              <Avatar.Text label="Workouy" />
-            </View>
-          </Card.Content>
-        </Card>
-      </TouchableOpacity>
+      <View style={{ flex: 1 }}>
+        <Button title="Show modal" onPress={toggleModal} />
+
+        <Modal isVisible={isModalVisible}>
+          <View style={{ flex: 1 }}>
+            <Text>Hello!</Text>
+
+            <Button title="Hide modal" onPress={toggleModal} />
+          </View>
+        </Modal>
+      </View>
     );
   };
 
@@ -110,7 +264,7 @@ function Schedule() {
         <Agenda
           items={items}
           loadItemsForMonth={loadItems}
-          selected="2022-05-17"
+          selected={today}
           renderItem={renderItem}
           renderEmptyDate={renderEmptyDate}
           rowHasChanged={rowHasChanged}
