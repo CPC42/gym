@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { flex } from "styled-system";
 
 export const CommonStyles = StyleSheet.create({
   container: {
@@ -18,6 +19,24 @@ export const CommonStyles = StyleSheet.create({
     top: 5,
     right: 5,
   },
+  bottomLogo: {
+    width: 50,
+    height: 50,
+    flexDirection: "row",
+    alignItems: "center",
+    margin: 5,
+    paddingEnd: 20,
+    paddingStart: 20,
+  },
+  tinyLogo_left: {
+    width: 50,
+    height: 50,
+    marginBottom: 25,
+    position: "absolute",
+    top: 5,
+    left: 5,
+    zIndex: 10,
+  },
   calendar: {
     flex: 1,
     top: 45,
@@ -30,7 +49,7 @@ export const CommonStyles = StyleSheet.create({
   },
   TitleCenter: {
     marginTop: 100,
-    fontSize: 30,
+    fontSize: 20,
     fontWeight: "bold",
     alignItems: "center",
     justifyContent: "center",
@@ -147,6 +166,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 22,
     top: 70,
+    height: 100,
   },
   modalView: {
     margin: 20,

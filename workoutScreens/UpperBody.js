@@ -20,7 +20,16 @@ const App = () => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={CommonStyles.centeredView}>
-      <Button title="Go back" onPress={() => navigation.goBack()} />;
+      <View style={CommonStyles.tinyLogo_left}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Image
+            style={CommonStyles.tinyLogo_left}
+            source={{
+              uri: "https://previews.123rf.com/images/get4net/get4net1712/get4net171200454/91295909-%EA%B2%A9%EB%A6%AC-%EB%90%9C-%EB%B0%B0%EA%B2%BD%EC%97%90-%EB%8B%A4%EC%8B%9C-%EB%B2%84%ED%8A%BC-%EC%95%84%EC%9D%B4%EC%BD%98.jpg",
+            }}
+          />
+        </TouchableOpacity>
+      </View>
       <View style={CommonStyles.text2}>
         <Text>Click here to go to sign up if you do not have an account.</Text>
         <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
@@ -49,7 +58,9 @@ const App = () => {
           />
         </TouchableOpacity>
       </View>
-      <Text>Workout for Upper Body! Choose the option you want:</Text>
+      <Text style={CommonStyles.TitleCenter}>
+        Workout for Upper Body! Choose the option you want:
+      </Text>
       <Modal
         animationType="slide"
         transparent={true}
@@ -131,6 +142,19 @@ const App = () => {
       >
         <Text style={styles.textStyle}>Strength</Text>
       </Pressable>
+      <View style={CommonStyles.bottomLogo}>
+        <Text style={CommonStyles.text2}>
+          Click here to get more information
+        </Text>
+        <TouchableOpacity onPress={() => navigation.navigate("Workout")}>
+          <Image
+            style={CommonStyles.bottomLogo}
+            source={{
+              uri: "https://seeklogo.com/images/I/information-desk-symbol-logo-871156055D-seeklogo.com.png",
+            }}
+          />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
