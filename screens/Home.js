@@ -1,11 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import { NativeBaseProvider } from "native-base";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { View, TouchableOpacity, Text, Image } from "react-native";
 import { Agenda } from "react-native-calendars";
 import { Card, Avatar } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { CommonStyles } from "../styles/CommonStyles";
+import { UsersContext } from "../contexts/UsersContext";
 
 const timeToString = (time) => {
   const date = new Date(time);
@@ -13,6 +14,7 @@ const timeToString = (time) => {
 };
 
 function Schedule() {
+  const usersContext = useContext(UsersContext);
   const navigation = useNavigation();
 
   let typeWorkout = "hard";

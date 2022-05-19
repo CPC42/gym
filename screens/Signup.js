@@ -4,12 +4,14 @@ import { StatusBar } from "expo-status-bar";
 import { Input, NativeBaseProvider, Button, Icon, Alert } from "native-base";
 import React, { useContext, useState } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
+import { textShadow } from "styled-system";
 import { UsersContext } from "../contexts/UsersContext";
 import { CommonStyles } from "../styles/CommonStyles";
 
 function Signup() {
   const navigation = useNavigation();
   const usersContext = useContext(UsersContext);
+  const [spText, setSpText] = useState("");
   const [userData, setUserData] = useState({
     user: "",
     email: "",
@@ -24,16 +26,17 @@ function Signup() {
     password: false,
     secondPassword: false,
   });
-  const checkUser = () => {
-    if (userData.user.match(/(?=.{4,})/)) {
+
+  const checkUser = (text) => {
+    if (text.match(/(?=.{4,})/)) {
       setVerify({ ...verify, user: true });
     } else {
       setVerify({ ...verify, user: false });
     }
   };
-  const checkEmail = () => {
+  const checkEmail = (text) => {
     if (
-      userData.email
+      text
         .toLowerCase()
         .match(
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -44,20 +47,19 @@ function Signup() {
       setVerify({ ...verify, email: false });
     }
   };
-  const checkPass = () => {
-    if (userData.password.match(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/)) {
-      setVerify({ ...verify, password: true });
+  const checkPass = (text) => {
+    if (text.match(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/)) {
+      setVerify({ ...verify, password: true, secondPassword: false });
     } else {
-      setVerify({ ...verify, password: false });
+      setVerify({ ...verify, password: false, secondPassword: false });
     }
+    setSpText("");
   };
 
-  const checkSamePassword = () => {
+  const checkSamePassword = (pass) => {
     if (
-      userData.password == userData.secondPassword &&
-      userData.secondPassword.match(
-        /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/
-      )
+      userData.password == pass &&
+      pass.match(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/)
     ) {
       setVerify({ ...verify, secondPassword: true });
     } else {
@@ -104,8 +106,8 @@ function Signup() {
             placeholder="Username"
             onChangeText={(text) => {
               setUserData({ ...userData, user: text });
+              checkUser(text);
             }}
-            onEndEditing={checkUser}
             _light={{
               placeholderTextColor: "blueGray.400",
             }}
@@ -142,8 +144,8 @@ function Signup() {
             placeholder="Email"
             onChangeText={(text) => {
               setUserData({ ...userData, email: text });
+              checkEmail(text);
             }}
-            onEndEditing={checkEmail}
             _light={{
               placeholderTextColor: "blueGray.400",
             }}
@@ -179,8 +181,8 @@ function Signup() {
             placeholder="Password"
             onChangeText={(text) => {
               setUserData({ ...userData, password: text });
+              checkPass(text);
             }}
-            onEndEditing={checkPass}
             _light={{
               placeholderTextColor: "blueGray.400",
             }}
@@ -213,13 +215,15 @@ function Signup() {
                 }}
               />
             }
+            value={spText}
             variant="outline"
             secureTextEntry
             placeholder="Confirm Password"
             onChangeText={(text) => {
               setUserData({ ...userData, secondPassword: text });
+              checkSamePassword(text);
+              setSpText(text);
             }}
-            onEndEditing={checkSamePassword}
             _light={{
               placeholderTextColor: "blueGray.400",
             }}
@@ -237,18 +241,19 @@ function Signup() {
         </Text>
       </View>
 
-      {/* Button */}
-
       <View style={CommonStyles.buttonStyle}>
         <Button
-          submit={() => {
+          onPress={() => {
+            console.log("aaaaaaa");
             usersContext.addUser(
               userData.user,
               userData.email,
               userData.password,
-              userdata.workType,
+              userData.workType,
               userData.workIntesity
             );
+            console.log("bbbbbbbb");
+            navigation.navigate("Workout");
           }}
           style={[
             CommonStyles.buttonDesign,
@@ -271,7 +276,7 @@ function Signup() {
               : true
           }
         >
-          Sign up!
+          <Text>Sign up!</Text>
         </Button>
       </View>
       <StatusBar style="auto" />
