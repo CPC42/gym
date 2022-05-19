@@ -42,7 +42,9 @@ const App = () => {
         </TouchableOpacity>
       </View>
 
-      <View style={CommonStyles.text2}>{informationText}</View>
+      <View style={CommonStyles.text2}>
+        <Text>{informationText}</Text>
+      </View>
     </View>
   );
 };
