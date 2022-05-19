@@ -73,6 +73,13 @@ function Signup() {
         </TouchableOpacity>
       </View>
 
+      <View style={CommonStyles.text2}>
+        <Text>Click here to go to your calendar.</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("Calendar")}>
+          <Text style={CommonStyles.signupText}> Calendar </Text>
+        </TouchableOpacity>
+      </View>
+
       <View style={CommonStyles.Middle}>
         <Text style={CommonStyles.LoginText}>Signup</Text>
       </View>
