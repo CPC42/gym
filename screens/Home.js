@@ -13,7 +13,7 @@ import { NativeBaseProvider } from "native-base";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 
-const App = () => {
+const Home = () => {
   const navigation = useNavigation();
 
   const [modalVisible, setModalVisible] = useState(false);
@@ -108,7 +108,7 @@ const App = () => {
 export default () => {
   return (
     <NativeBaseProvider>
-      <App />
+      <Home />
     </NativeBaseProvider>
   );
 };

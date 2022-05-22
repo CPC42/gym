@@ -18,11 +18,19 @@ const App = () => {
   const navigation = useNavigation();
 
   const workoutTextHipertophy =
-    "-Squats \n-Leg Extensions \n-Bulgarian Squats -nBooty Builder Machine \n-Calves";
+    "-Barbell Bicep Curl \n-Dumbell Curl \n-Skull Crusher (7x4) \nCable Triceps Pulldown (6x3) \n-Plate Holding (focusing on forearms, 2x1 min) \nSit ups (30x3) \nLateral Abdominals (60x3)";
   const workoutTextStrength =
-    "-Squats \n-Leg Extensions \n-Bulgarian Squats -nBooty Builder Machine \n-Calves \n-20 Min Incline mild Run";
+    "-Barbell Bicep Curl (6x4) \n-Chin ups (8x4) \n-Cable Bicep Curl (8x3) \nSkull Crusher (5x3) \n-Overhead Triceps Extension (7x3) \n-Plate Holding (focusing on forearms, 2x1:30 min) \nLeg raises (12x3) \nSit ups (25x3)";
+
+  const text_workout =
+    "For Arms Day, take into account the following information: We will focus on the Biceps first, then on the Triceps and later on, the Forearms will be trained. Afterwards, come some abdominal exercises shall\nThe muscles groups used are ";
+
+  const image_link =
+    "https://legionathletics.com/wp-content/uploads/2019/06/upper-body-workout-biceps-anatomy.jpg";
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible2, setModalVisible2] = useState(false);
+
   return (
     <View style={CommonStyles.centeredView}>
       <View style={CommonStyles.tinyLogo_left}>
@@ -64,9 +72,9 @@ const App = () => {
         </TouchableOpacity>
       </View>
       <Text style={CommonStyles.TitleCenter}>
-        Workout for ARMS! Choose the option you want:
+        Workout for ARMS and ABS! Choose the option you want:
       </Text>
-      <View>
+      <View style={styles.modalContent}>
         <Modal
           animationType="slide"
           transparent={true}
@@ -95,14 +103,14 @@ const App = () => {
           <Text style={styles.textStyle}>Hipertrophy</Text>
         </Pressable>
       </View>
-      <View>
+      <View style={styles.modalContent2}>
         <Modal
           animationType="slide"
           transparent={true}
-          visible={modalVisible}
+          visible={modalVisible2}
           onRequestClose={() => {
             Alert.alert("Modal has been closed.");
-            setModalVisible(!modalVisible);
+            setModalVisible2(!modalVisible2);
           }}
         >
           <View style={styles.centeredView}>
@@ -110,7 +118,7 @@ const App = () => {
               <Text style={styles.modalText}>{workoutTextStrength}</Text>
               <Pressable
                 style={[styles.button, styles.buttonClose]}
-                onPress={() => setModalVisible(!modalVisible)}
+                onPress={() => setModalVisible2(!modalVisible2)}
               >
                 <Text style={styles.textStyle}>Hide Modal</Text>
               </Pressable>
@@ -119,16 +127,20 @@ const App = () => {
         </Modal>
         <Pressable
           style={[styles.button, styles.buttonOpen]}
-          onPress={() => setModalVisible(true)}
+          onPress={() => setModalVisible2(true)}
         >
           <Text style={styles.textStyle}>Strength</Text>
         </Pressable>
       </View>
       <View style={CommonStyles.bottomLogo}>
-        <Text style={CommonStyles.text2}>
-          Click here to get more information
-        </Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Workout")}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("Information", {
+              paramKey: text_workout,
+              imageKey: image_link,
+            })
+          }
+        >
           <Image
             style={CommonStyles.bottomLogo}
             source={{

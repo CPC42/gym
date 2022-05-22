@@ -13,8 +13,7 @@ import ChestDay from "./workoutScreens/ChestDay";
 import LegDay from "./workoutScreens/LegDay";
 import PullDay from "./workoutScreens/PullDay";
 import PushDay from "./workoutScreens/PushDay";
-import ShoulderDay from "./workoutScreens/ShoulderDay";
-import UpperBody from "./workoutScreens/UpperBody";
+import ShouldersDay from "./workoutScreens/ShouldersDay";
 import Information from "./workoutScreens/Information";
 
 const Stack = createStackNavigator();
@@ -33,8 +32,7 @@ function App() {
         <Stack.Screen name="ChestDay" component={ChestDay} />
         <Stack.Screen name="PullDay" component={PullDay} />
         <Stack.Screen name="PushDay" component={PushDay} />
-        <Stack.Screen name="ShoulderDay" component={ShoulderDay} />
-        <Stack.Screen name="UpperBody" component={UpperBody} />
+        <Stack.Screen name="ShouldersDay" component={ShouldersDay} />
         <Stack.Screen name="ArmsDay" component={ArmsDay} />
         <Stack.Screen name="Information" component={Information} />
       </Stack.Navigator>

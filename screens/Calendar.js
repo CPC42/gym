@@ -26,8 +26,7 @@ import LegDay from "../workoutScreens/LegDay";
 import ChestDay from "../workoutScreens/ChestDay";
 import PullDay from "../workoutScreens/PullDay";
 import PushDay from "../workoutScreens/PushDay";
-import ShoulderDay from "../workoutScreens/ShoulderDay";
-import UpperBody from "../workoutScreens/UpperBody";
+import ShouldersDay from "../workoutScreens/ShouldersDay";
 
 const timeToString = (time) => {
   const date = new Date(time);
@@ -51,7 +50,7 @@ const getWeekday = (time) => {
 function Schedule() {
   const navigation = useNavigation();
 
-  const typeWorkout = "light";
+  const typeWorkout = "hard";
 
   var today = new Date().toISOString().slice(0, 10);
 
@@ -148,7 +147,7 @@ function Schedule() {
           if (current_Weekday == "Tuesday") {
             items[strTime] = [
               {
-                name: "back & Biceps",
+                name: "Back & Biceps",
                 height: Math.max(50, Math.floor(Math.random() * 150)),
               },
             ];
@@ -172,7 +171,7 @@ function Schedule() {
           if (current_Weekday == "Friday") {
             items[strTime] = [
               {
-                name: "Shoulders day",
+                name: "Shoulders",
                 height: Math.max(50, Math.floor(Math.random() * 150)),
               },
             ];
@@ -200,9 +199,6 @@ function Schedule() {
 
   const renderItem = (item) => {
     const nextScreen = item.name.split(" ")[0] + "Day";
-    if (nextScreen == "ArmsDay") {
-      console.log(nextScreen);
-    }
 
     return (
       <View style={CommonStyles.dateText}>

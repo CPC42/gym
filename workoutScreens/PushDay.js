@@ -18,13 +18,18 @@ const App = () => {
   const navigation = useNavigation();
 
   const workoutTextHipertophy =
-    "-Squats \n-Leg Extensions \n-Bulgarian Squats -nBooty Builder Machine \n-Calves";
-  const workoutTextResistance =
-    "-Squats \n-Leg Extensions \n-Bulgarian Squats -nBooty Builder Machine \n-Calves \n-35 Min Incline Walk";
+    "-Bench Press (8x4) \n-Seated Dumbbell Shoulder Press (12x4) \n-Incline Dumbbell Press (10x3) \nSide Lateral Raises (10x3) \n-Tricep extensions (8x3)";
   const workoutTextStrength =
-    "-Squats \n-Leg Extensions \n-Bulgarian Squats -nBooty Builder Machine \n-Calves \n-20 Min Incline mild Run";
+    "-Bench Press (4x4) \n-Seated Dumbbell Shoulder Press (5x3) \n-Incline Dumbbell Press (5x3) \nTricep Pressdowns (8x2) \n-Tricep extensions (8x3)";
+
+  const text_workout =
+    "For Push Day, take into account the following information: \nWe are working mostly with the upper part of our body in various ways. The goal is to do pushing exercises to improve overall strenght and posture.\n\nThe muscles groups used are  ";
+
+  const image_link = "https://i.ytimg.com/vi/HE45jVN7XKM/maxresdefault.jpg";
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible2, setModalVisible2] = useState(false);
+
   return (
     <View style={CommonStyles.centeredView}>
       <View style={CommonStyles.tinyLogo_left}>
@@ -68,92 +73,73 @@ const App = () => {
       <Text style={CommonStyles.TitleCenter}>
         Push Day! Choose the option you want:
       </Text>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>{workoutTextHipertophy}</Text>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </Pressable>
+      <View style={styles.modalContent}>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <Text style={styles.modalText}>{workoutTextHipertophy}</Text>
+              <Pressable
+                style={[styles.button, styles.buttonClose]}
+                onPress={() => setModalVisible(!modalVisible)}
+              >
+                <Text style={styles.textStyle}>Hide Workout</Text>
+              </Pressable>
+            </View>
           </View>
-        </View>
-      </Modal>
-      <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={() => setModalVisible(true)}
-      >
-        <Text style={styles.textStyle}>Hipertrophy</Text>
-      </Pressable>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>{workoutTextResistance}</Text>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </Pressable>
+        </Modal>
+        <Pressable
+          style={[styles.button, styles.buttonOpen]}
+          onPress={() => setModalVisible(true)}
+        >
+          <Text style={styles.textStyle}>Hipertrophy</Text>
+        </Pressable>
+      </View>
+      <View style={styles.modalContent2}>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible2}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+            setModalVisible2(!modalVisible2);
+          }}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <Text style={styles.modalText}>{workoutTextStrength}</Text>
+              <Pressable
+                style={[styles.button, styles.buttonClose]}
+                onPress={() => setModalVisible2(!modalVisible2)}
+              >
+                <Text style={styles.textStyle}>Hide Workout</Text>
+              </Pressable>
+            </View>
           </View>
-        </View>
-      </Modal>
-      <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={() => setModalVisible(true)}
-      >
-        <Text style={styles.textStyle}>Resistance</Text>
-      </Pressable>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>{workoutTextStrength}</Text>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </Pressable>
-          </View>
-        </View>
-      </Modal>
-      <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={() => setModalVisible(true)}
-      >
-        <Text style={styles.textStyle}>Strength</Text>
-      </Pressable>
+        </Modal>
+        <Pressable
+          style={[styles.button, styles.buttonOpen]}
+          onPress={() => setModalVisible2(true)}
+        >
+          <Text style={styles.textStyle}>Strength</Text>
+        </Pressable>
+      </View>
       <View style={CommonStyles.bottomLogo}>
-        <Text style={CommonStyles.text2}>
-          Click here to get more information
-        </Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Workout")}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("Information", {
+              paramKey: text_workout,
+              imageKey: image_link,
+            })
+          }
+        >
           <Image
             style={CommonStyles.bottomLogo}
             source={{
