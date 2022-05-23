@@ -92,7 +92,7 @@ function Login() {
       </View>
       <View style={CommonStyles.text2}>
         <Text>Don't have an account? </Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
+        <TouchableOpacity onPress={() => navigation.push("Signup")}>
           <Text style={CommonStyles.signupText}> Sign up</Text>
         </TouchableOpacity>
       </View>

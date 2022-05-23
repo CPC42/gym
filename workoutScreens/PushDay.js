@@ -32,17 +32,14 @@ const App = () => {
 
   return (
     <View style={CommonStyles.centeredView}>
-      <View style={CommonStyles.tinyLogo_left}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Image
-            style={CommonStyles.tinyLogo_left}
-            source={{
-              uri: "https://previews.123rf.com/images/get4net/get4net1712/get4net171200454/91295909-%EA%B2%A9%EB%A6%AC-%EB%90%9C-%EB%B0%B0%EA%B2%BD%EC%97%90-%EB%8B%A4%EC%8B%9C-%EB%B2%84%ED%8A%BC-%EC%95%84%EC%9D%B4%EC%BD%98.jpg",
-            }}
-          />
-        </TouchableOpacity>
-      </View>
-      <View style={CommonStyles.text2}>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          paddingTop: 5,
+          top: 20,
+        }}
+      >
         <Text>Click here to go to your calendar.</Text>
         <TouchableOpacity onPress={() => navigation.navigate("Calendar")}>
           <Text style={CommonStyles.signupText}> Calendar </Text>

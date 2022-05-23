@@ -37,7 +37,7 @@ export const CommonStyles = StyleSheet.create({
     padding: 2,
     position: "relative",
     right: "auto",
-    top: "90%",
+    top: "80%",
   },
   tinyLogo_left: {
     width: 50,

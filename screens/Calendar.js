@@ -30,6 +30,8 @@ import PullDay from "../workoutScreens/PullDay";
 import PushDay from "../workoutScreens/PushDay";
 import ShouldersDay from "../workoutScreens/ShouldersDay";
 
+import RNRestart from "react-native-restart";
+
 const timeToString = (time) => {
   const date = new Date(time);
   return date.toISOString().split("T")[0];
@@ -251,7 +253,27 @@ function Schedule() {
 
   return (
     <View style={CommonStyles.container}>
-      <View style={CommonStyles.text2}>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          paddingTop: 5,
+          top: 20,
+        }}
+      >
+        <Text>Click here to logout.</Text>
+        <TouchableOpacity onPress={() => navigation.push("Login")}>
+          <Text style={CommonStyles.signupText}> logout </Text>
+        </TouchableOpacity>
+      </View>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          paddingTop: 5,
+          top: 30,
+        }}
+      >
         <Text>
           {"Welcome, " + usersContext.users[usersContext.currentUser].user}
           {"\n"}

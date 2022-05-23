@@ -2,7 +2,7 @@
 import { useRoute } from "@react-navigation/native";
 // eslint-disable-next-line import/no-duplicates
 import { useNavigation } from "@react-navigation/native";
-import { NativeBaseProvider } from "native-base";
+import { NativeBaseProvider, ScrollView } from "native-base";
 import React, { useState } from "react";
 import {
   Alert,
@@ -29,10 +29,11 @@ const Information = () => {
     "Please, workout with caution as performing the exercises in an incorrect way may cause injuries. \n\n Definition of the terms: \n\n - Hipertrophy stands for an increase and growth of muscle cells. It shall be chosen for people wanting to add more muscle. \n\n - Resistance stands for the type of workout where a lot of sets are done, with few repetitions in a way that increases endurance. \n\n - Strength training focuses on low repetitions with a lot of weight: It is recommended for those who want to get stronger while not building as much muscle. \n\n The numbers next to each exercise indicate how many repetitions of each individual exercise shall be done, followed by the number of series that should be performed. They are estimates and shall be followed up to each person's individual capacities. ";
 
   return (
-    <View style={CommonStyles.centeredView}>
+    <ScrollView style={CommonStyles.centeredView}>
       <View>
         <Text
           style={{
+            marginTop: 30,
             fontSize: 20,
             fontWeight: "bold",
             alignItems: "center",
@@ -91,7 +92,7 @@ const Information = () => {
         </Text>
       </View>
 
-      <View style={CommonStyles.centerImage}>
+      <View style={[CommonStyles.centerImage, { marginBottom: 200 }]}>
         <Image
           source={{
             uri: image_link,
@@ -99,7 +100,7 @@ const Information = () => {
           style={CommonStyles.centerImage}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
