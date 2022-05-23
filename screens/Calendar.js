@@ -56,11 +56,6 @@ function Schedule() {
 
   const typeWorkout =
     usersContext.users[usersContext.currentUser].workoutIntensity;
-  console.log(
-    usersContext.users[usersContext.currentUser],
-    typeWorkout,
-    typeof typeWorkout
-  );
 
   var today = new Date().toISOString().slice(0, 10);
 
@@ -242,17 +237,37 @@ function Schedule() {
     return r1.name !== r2.name;
   };
 
+  let nameWorkout = "";
+  switch (typeWorkout) {
+    case 3:
+      nameWorkout = "hard";
+      break;
+    case 2:
+      nameWorkout = "medium";
+      break;
+    case 1:
+      nameWorkout = "ligth";
+  }
+
   return (
     <View style={CommonStyles.container}>
       <View style={CommonStyles.text2}>
         <Text>
           {"Welcome, " + usersContext.users[usersContext.currentUser].user}
+          {"\n"}
+          {"You have selected the " + nameWorkout + " workout."}
+          {"\n"}Below, you can find your workout for every day of the upcoming
+          two months!
         </Text>
       </View>
-      <View style={CommonStyles.text2}>
-        <Text>Click here to go to log in.</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-          <Text style={CommonStyles.signupText}> LOGIN </Text>
+      <View style={CommonStyles.tinyLogo}>
+        <TouchableOpacity onPress={() => navigation.navigate("Workout")}>
+          <Image
+            style={CommonStyles.tinyLogo}
+            source={{
+              uri: "https://cdn.pixabay.com/photo/2016/01/03/11/24/gear-1119298_1280.png",
+            }}
+          />
         </TouchableOpacity>
       </View>
 
