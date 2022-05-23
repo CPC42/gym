@@ -5,7 +5,7 @@ export const CommonStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    top: 40,
+    top: 0,
   },
   title: {
     fontSize: 20,
@@ -55,7 +55,7 @@ export const CommonStyles = StyleSheet.create({
   },
 
   LoginText: {
-    marginTop: 100,
+    marginTop: 50,
     fontSize: 30,
     fontWeight: "bold",
   },
@@ -96,7 +96,7 @@ export const CommonStyles = StyleSheet.create({
     marginTop: 30,
     marginLeft: 15,
     marginRight: 15,
-    backgroundColor: "yellow",
+    backgroundColor: "#88AC24",
   },
   buttonStyleX: {
     marginTop: 12,
@@ -139,7 +139,7 @@ export const CommonStyles = StyleSheet.create({
   button2: {
     paddingLeft: 20,
     paddingRigth: 20,
-    backgroundColor: "yellow",
+    backgroundColor: "#88AC24",
     height: 40,
     width: 160,
     borderRadius: 10,

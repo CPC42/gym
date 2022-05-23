@@ -19,7 +19,7 @@ function Login() {
 
   const [passwordTxt, setPasswordxt] = useState("");
   const usersContext = useContext(UsersContext);
-  checkEmail = (email) => {
+  const checkEmail = (email) => {
     var index = usersContext.users.findIndex(
       (object) => object.email === email
     );
@@ -35,6 +35,7 @@ function Login() {
         setLogUser({
           ...logUser,
           current: index,
+          emailMsg: "* Email found",
           verEmail: true,
           passwordMsg: "*",
         });
@@ -60,7 +61,7 @@ function Login() {
     }
   };
 
-  checkPass = (password) => {
+  const checkPass = (password) => {
     const newState = [...usersContext.users];
     if (password.match(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/)) {
       if (password === newState[logUser.current].password) {
