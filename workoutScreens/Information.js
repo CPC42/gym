@@ -1,3 +1,8 @@
+// eslint-disable-next-line import/no-duplicates
+import { useRoute } from "@react-navigation/native";
+// eslint-disable-next-line import/no-duplicates
+import { useNavigation } from "@react-navigation/native";
+import { NativeBaseProvider } from "native-base";
 import React, { useState } from "react";
 import {
   Alert,
@@ -8,21 +13,35 @@ import {
   View,
   Image,
 } from "react-native";
-import { CommonStyles, styles } from "../styles/CommonStyles";
-import { NativeBaseProvider } from "native-base";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { useNavigation } from "@react-navigation/native";
 
-const App = () => {
+import { CommonStyles, styles } from "../styles/CommonStyles";
+
+const Information = () => {
   const navigation = useNavigation();
 
+  const route = useRoute();
+
+  const text_workout = route.params.paramKey;
+  const image_link = route.params.imageKey;
+
   const informationText =
-    "Please, workout with caution as performing the exercises in an incorrect way may cause injuries. \n\n Definition of the terms: \n Hipertrophy stands for an increase and growth of muscle cells. It shall be chosen for people wanting to add more muscle. \n Resistance stands for the type of workout where a lot of sets are done, with few repetitions in a way that increases endurance. \n Strenght training focuses on low repetitions with a lot of weight: It is recommended for those who want to get stronger while not building as much muscle. ";
+    "Please, workout with caution as performing the exercises in an incorrect way may cause injuries. \n\n Definition of the terms: \n\n - Hipertrophy stands for an increase and growth of muscle cells. It shall be chosen for people wanting to add more muscle. \n\n - Resistance stands for the type of workout where a lot of sets are done, with few repetitions in a way that increases endurance. \n\n - Strength training focuses on low repetitions with a lot of weight: It is recommended for those who want to get stronger while not building as much muscle. \n\n The numbers next to each exercise indicate how many repetitions of each individual exercise shall be done, followed by the number of series that should be performed. They are estimates and shall be followed up to each person's individual capacities. ";
 
   return (
     <View style={CommonStyles.centeredView}>
       <View>
-        <Text style={CommonStyles.TitleCenter}>Important Information ⚠️</Text>
+        <Text
+          style={{
+            fontSize: 20,
+            fontWeight: "bold",
+            alignItems: "center",
+            justifyContent: "center",
+            textAlign: "center",
+          }}
+        >
+          Important Information ⚠️
+        </Text>
       </View>
       <View style={CommonStyles.tinyLogo}>
         <TouchableOpacity onPress={() => navigation.navigate("Workout")}>
@@ -42,8 +61,43 @@ const App = () => {
         </TouchableOpacity>
       </View>
 
-      <View style={CommonStyles.text2}>
-        <Text>{informationText}</Text>
+      <View
+        style={{
+          justifyContent: "center",
+          marginLeft: 30,
+          marginRight: 30,
+          alignItems: "center",
+        }}
+      >
+        <Text>
+          {"\n"}
+          {"\n"}
+          {informationText}
+        </Text>
+      </View>
+
+      <View
+        style={{
+          justifyContent: "center",
+          marginLeft: 30,
+          marginRight: 30,
+          alignItems: "center",
+        }}
+      >
+        <Text>
+          {"\n"}
+          {"\n"}
+          {text_workout}
+        </Text>
+      </View>
+
+      <View style={CommonStyles.centerImage}>
+        <Image
+          source={{
+            uri: image_link,
+          }}
+          style={CommonStyles.centerImage}
+        />
       </View>
     </View>
   );
@@ -52,7 +106,7 @@ const App = () => {
 export default () => {
   return (
     <NativeBaseProvider>
-      <App />
+      <Information />
     </NativeBaseProvider>
   );
 };

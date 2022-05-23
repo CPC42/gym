@@ -6,7 +6,6 @@ import { NativeBaseProvider } from "native-base";
 import React, { useContext, useState } from "react";
 import { Text, View, TouchableOpacity, Image, Button } from "react-native";
 import { UsersContext } from "../contexts/UsersContext";
-
 import { CommonStyles } from "../styles/CommonStyles";
 
 function Workout() {

@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { UsersContextProvider } from "./contexts/UsersContext";
 import Calendar from "./screens/Calendar";
 import Login from "./screens/Login";
-import Home from "./screens/Home";
 import Signup from "./screens/Signup";
 import Workout from "./screens/Workout";
 import ArmsDay from "./workoutScreens/ArmsDay";
@@ -13,8 +12,7 @@ import ChestDay from "./workoutScreens/ChestDay";
 import LegDay from "./workoutScreens/LegDay";
 import PullDay from "./workoutScreens/PullDay";
 import PushDay from "./workoutScreens/PushDay";
-import ShoulderDay from "./workoutScreens/ShoulderDay";
-import UpperBody from "./workoutScreens/UpperBody";
+import ShouldersDay from "./workoutScreens/ShouldersDay";
 import Information from "./workoutScreens/Information";
 
 const Stack = createStackNavigator();
@@ -25,7 +23,6 @@ function App() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signup" component={Signup} />
-        <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Workout" component={Workout} />
         <Stack.Screen name="Calendar" component={Calendar} />
         <Stack.Screen name="BackDay" component={BackDay} />
@@ -33,8 +30,7 @@ function App() {
         <Stack.Screen name="ChestDay" component={ChestDay} />
         <Stack.Screen name="PullDay" component={PullDay} />
         <Stack.Screen name="PushDay" component={PushDay} />
-        <Stack.Screen name="ShoulderDay" component={ShoulderDay} />
-        <Stack.Screen name="UpperBody" component={UpperBody} />
+        <Stack.Screen name="ShouldersDay" component={ShouldersDay} />
         <Stack.Screen name="ArmsDay" component={ArmsDay} />
         <Stack.Screen name="Information" component={Information} />
       </Stack.Navigator>

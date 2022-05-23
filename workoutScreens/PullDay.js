@@ -1,30 +1,31 @@
-import React, { useState } from "react";
-import {
-  Alert,
-  Modal,
-  StyleSheet,
-  Text,
-  Pressable,
-  View,
-  Image,
-  Button,
-} from "react-native";
-import { CommonStyles, styles } from "../styles/CommonStyles";
-import { NativeBaseProvider } from "native-base";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
+import { NativeBaseProvider } from "native-base";
+import React, { useState } from "react";
+import { Alert, Modal, Pressable, View, Image, Text } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-const App = () => {
+import { CommonStyles, styles } from "../styles/CommonStyles";
+
+const PullDay = () => {
   const navigation = useNavigation();
 
   const workoutTextHipertophy =
-    "-Squats \n-Leg Extensions \n-Bulgarian Squats -nBooty Builder Machine \n-Calves";
+    "-Pull Ups (8x4) \n-Cable Underhand Pulldown (5-10x4) \n-Barbell Deadlift (7x4) \nNarrow grip Barbell (8x4) \n-Calves";
   const workoutTextResistance =
-    "-Squats \n-Leg Extensions \n-Bulgarian Squats -nBooty Builder Machine \n-Calves \n-35 Min Incline Walk";
+    "-Pull Ups (5x6) \n-Barbell Shrugs (15x4) \n-Barbel Curl (13x3) \nBar Bicep Curl (15x4) \n-Barbell Deadlift (15x3)";
   const workoutTextStrength =
-    "-Squats \n-Leg Extensions \n-Bulgarian Squats -nBooty Builder Machine \n-Calves \n-20 Min Incline mild Run";
+    "-Weighted Pull ups (8x3) \n-Cable Underhand Pulldown (4x4) \n-Barbell Deadlift (2x4) \nBarbell Deadlift (5x3)";
+
+  const text_workout =
+    "For Pull Day, take into account the following information: \nWe are working mostly with the upper part of our body in various ways. The goal is to do pulling exercises to improve overall strenght and posture.\n\nThe muscles groups used are ";
+
+  const image_link =
+    "https://fitbod.me/wp-content/uploads/2021/12/What-Are-Pull-Muscle-Groups.jpg";
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible2, setModalVisible2] = useState(false);
+  const [modalVisible3, setModalVisible3] = useState(false);
+
   return (
     <View style={CommonStyles.centeredView}>
       <View style={CommonStyles.tinyLogo_left}>
@@ -66,13 +67,15 @@ const App = () => {
         </TouchableOpacity>
       </View>
       <Text style={CommonStyles.TitleCenter}>
-        Workout for Upper Body! Choose the option you want:
+        Pull Day! Choose the option you want:
       </Text>
-      <View>
+      <View style={styles.modalContent}>
         <Modal
           animationType="slide"
           transparent={true}
           visible={modalVisible}
+          style={styles.modalContent}
+          swipeDirection="left"
           onRequestClose={() => {
             Alert.alert("Modal has been closed.");
             setModalVisible(!modalVisible);
@@ -85,7 +88,7 @@ const App = () => {
                 style={[styles.button, styles.buttonClose]}
                 onPress={() => setModalVisible(!modalVisible)}
               >
-                <Text style={styles.textStyle}>Hide Modal</Text>
+                <Text style={styles.textStyle}>Hide</Text>
               </Pressable>
             </View>
           </View>
@@ -97,14 +100,16 @@ const App = () => {
           <Text style={styles.textStyle}>Hipertrophy</Text>
         </Pressable>
       </View>
-      <View>
+      <View style={styles.modalContent2}>
         <Modal
           animationType="slide"
           transparent={true}
-          visible={modalVisible}
+          style={styles.modalContent}
+          visible={modalVisible2}
+          swipeDirection="left"
           onRequestClose={() => {
             Alert.alert("Modal has been closed.");
-            setModalVisible(!modalVisible);
+            setModalVisible2(!modalVisible2);
           }}
         >
           <View style={styles.centeredView}>
@@ -112,28 +117,30 @@ const App = () => {
               <Text style={styles.modalText}>{workoutTextResistance}</Text>
               <Pressable
                 style={[styles.button, styles.buttonClose]}
-                onPress={() => setModalVisible(!modalVisible)}
+                onPress={() => setModalVisible2(!modalVisible2)}
               >
-                <Text style={styles.textStyle}>Hide Modal</Text>
+                <Text style={styles.textStyle}>Hide</Text>
               </Pressable>
             </View>
           </View>
         </Modal>
         <Pressable
           style={[styles.button, styles.buttonOpen]}
-          onPress={() => setModalVisible(true)}
+          onPress={() => setModalVisible2(true)}
         >
           <Text style={styles.textStyle}>Resistance</Text>
         </Pressable>
       </View>
-      <View>
+      <View style={styles.modalContent3}>
         <Modal
           animationType="slide"
           transparent={true}
-          visible={modalVisible}
+          visible={modalVisible3}
+          style={styles.modalContent}
+          swipeDirection="left"
           onRequestClose={() => {
             Alert.alert("Modal has been closed.");
-            setModalVisible(!modalVisible);
+            setModalVisible3(!modalVisible3);
           }}
         >
           <View style={styles.centeredView}>
@@ -141,26 +148,29 @@ const App = () => {
               <Text style={styles.modalText}>{workoutTextStrength}</Text>
               <Pressable
                 style={[styles.button, styles.buttonClose]}
-                onPress={() => setModalVisible(!modalVisible)}
+                onPress={() => setModalVisible3(!modalVisible3)}
               >
-                <Text style={styles.textStyle}>Hide Modal</Text>
+                <Text style={styles.textStyle}>Hide</Text>
               </Pressable>
             </View>
           </View>
         </Modal>
         <Pressable
           style={[styles.button, styles.buttonOpen]}
-          onPress={() => setModalVisible(true)}
+          onPress={() => setModalVisible3(true)}
         >
           <Text style={styles.textStyle}>Strength</Text>
         </Pressable>
       </View>
-
       <View style={CommonStyles.bottomLogo}>
-        <Text style={CommonStyles.text2}>
-          Click here to get more information
-        </Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Workout")}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("Information", {
+              paramKey: text_workout,
+              imageKey: image_link,
+            })
+          }
+        >
           <Image
             style={CommonStyles.bottomLogo}
             source={{
@@ -176,7 +186,7 @@ const App = () => {
 export default () => {
   return (
     <NativeBaseProvider>
-      <App />
+      <PullDay />
     </NativeBaseProvider>
   );
 };

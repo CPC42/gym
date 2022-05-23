@@ -18,11 +18,19 @@ const App = () => {
   const navigation = useNavigation();
 
   const workoutTextHipertophy =
-    "-Squats \n-Leg Extensions \n-Bulgarian Squats -nBooty Builder Machine \n-Calves";
+    "-Bench Press (10x4) \n-Incline Bench with dumbell (12x4) \n-Cable flies, Top and Bottom Positions, (8x4) \n - Standing Tricep Extension (12x4) \n-Tricep Pulldown (8x3)";
   const workoutTextStrength =
-    "-Squats \n-Leg Extensions \n-Bulgarian Squats -nBooty Builder Machine \n-Calves \n-20 Min Incline mild Run";
+    "-Bench Press (5x5) \n-Incline Barbell Bench (6x4) \n-Cable flies, Top, Bottom and Mid Positions, (6x3) \n - Standing Tricep Extension (6x4) \n-Tricep Pulldown (5x3)";
+
+  const text_workout =
+    "For Chest and Triceps Day, take into account the following information: We want to work the chest first, with a lot of weight in the bench exercises and focusing more on form and reps on the cable exercises. \nThe muscles groups used are ";
+
+  const image_link =
+    "https://i.pinimg.com/736x/20/08/e3/2008e3218d914487fd636c273a0b4f3b--chest-muscles-shoulder-exercises.jpg";
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible2, setModalVisible2] = useState(false);
+
   return (
     <View style={CommonStyles.centeredView}>
       <View style={CommonStyles.tinyLogo_left}>
@@ -66,7 +74,7 @@ const App = () => {
       <Text style={CommonStyles.TitleCenter}>
         Workout for Chest! Choose the option you want:
       </Text>
-      <View>
+      <View style={styles.modalContent}>
         <Modal
           animationType="slide"
           transparent={true}
@@ -95,14 +103,14 @@ const App = () => {
           <Text style={styles.textStyle}>Hipertrophy</Text>
         </Pressable>
       </View>
-      <View>
+      <View style={styles.modalContent2}>
         <Modal
           animationType="slide"
           transparent={true}
-          visible={modalVisible}
+          visible={modalVisible2}
           onRequestClose={() => {
             Alert.alert("Modal has been closed.");
-            setModalVisible(!modalVisible);
+            setModalVisible2(!modalVisible2);
           }}
         >
           <View style={styles.centeredView}>
@@ -110,7 +118,7 @@ const App = () => {
               <Text style={styles.modalText}>{workoutTextStrength}</Text>
               <Pressable
                 style={[styles.button, styles.buttonClose]}
-                onPress={() => setModalVisible(!modalVisible)}
+                onPress={() => setModalVisible2(!modalVisible2)}
               >
                 <Text style={styles.textStyle}>Hide Modal</Text>
               </Pressable>
@@ -119,16 +127,20 @@ const App = () => {
         </Modal>
         <Pressable
           style={[styles.button, styles.buttonOpen]}
-          onPress={() => setModalVisible(true)}
+          onPress={() => setModalVisible2(true)}
         >
           <Text style={styles.textStyle}>Strength</Text>
         </Pressable>
       </View>
       <View style={CommonStyles.bottomLogo}>
-        <Text style={CommonStyles.text2}>
-          Click here to get more information
-        </Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Workout")}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("Information", {
+              paramKey: text_workout,
+              imageKey: image_link,
+            })
+          }
+        >
           <Image
             style={CommonStyles.bottomLogo}
             source={{

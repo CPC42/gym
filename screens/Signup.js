@@ -4,7 +4,6 @@ import { StatusBar } from "expo-status-bar";
 import { Input, NativeBaseProvider, Button, Icon, Alert } from "native-base";
 import React, { useContext, useState } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
-import { textShadow } from "styled-system";
 import { UsersContext } from "../contexts/UsersContext";
 import { CommonStyles } from "../styles/CommonStyles";
 
@@ -99,20 +98,6 @@ function Signup() {
   };
   return (
     <View style={CommonStyles.container}>
-      <View style={CommonStyles.text2}>
-        <Text>Click here to go to the home page.</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-          <Text style={CommonStyles.signupText}> Homepage </Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={CommonStyles.text2}>
-        <Text>Click here to go to your calendar.</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Calendar")}>
-          <Text style={CommonStyles.signupText}> Calendar </Text>
-        </TouchableOpacity>
-      </View>
-
       <View style={CommonStyles.Middle}>
         <Text style={CommonStyles.LoginText}>Signup</Text>
       </View>

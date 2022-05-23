@@ -1,10 +1,10 @@
 import { FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { UsersContext } from "../contexts/UsersContext";
 import { StatusBar } from "expo-status-bar";
 import { Input, NativeBaseProvider, Button, Icon } from "native-base";
 import React, { useContext, useState } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
-import { UsersContext } from "../contexts/UsersContext";
 import { CommonStyles } from "../styles/CommonStyles";
 
 function Login() {
@@ -86,20 +86,6 @@ function Login() {
   };
   return (
     <View style={CommonStyles.container}>
-      <View style={CommonStyles.text2}>
-        <Text>Click here to go to the home page.</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-          <Text style={CommonStyles.signupText}> Homepage </Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={CommonStyles.text2}>
-        <Text>Click here to go to your calendar.</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Calendar")}>
-          <Text style={CommonStyles.signupText}> Calendar </Text>
-        </TouchableOpacity>
-      </View>
-
       <View style={CommonStyles.Middle}>
         <Text style={CommonStyles.LoginText}>Login</Text>
       </View>

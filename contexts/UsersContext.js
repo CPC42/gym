@@ -11,8 +11,6 @@ export const UsersContextProvider = ({ children }) => {
     loadUsers().then((result) => setUsers(result));
   }, []);
 
-  console.log(users);
-
   const addUser = (user, email, password, workoutType, workoutIntensity) => {
     setCurrentUser(users.length);
     setUsers([

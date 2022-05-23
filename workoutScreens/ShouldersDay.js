@@ -14,19 +14,19 @@ import { NativeBaseProvider } from "native-base";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 
-const App = () => {
+const ShouldersDay = () => {
   const navigation = useNavigation();
 
   const workoutTextHipertophy =
-    "-Barbell Bicep Curl \n-Dumbell Curl \n-Skull Crusher (7x4) \nCable Triceps Pulldown (6x3) \n-Plate Holding (focusing on forearms, 2x1 min) \nSit ups (30x3) \nLateral Abdominals (60x3)";
+    "-Shoulder Press on Smith Machine (10x4) \n-Bench Shoulder Press with Dumbells (8x4) \n-Lateral Raises (15x3) \n-Trap Contractions (8x3) \n-Close hand Pull Ups (focusing on shoulder)";
   const workoutTextStrength =
-    "-Barbell Bicep Curl (6x4) \n-Chin ups (8x4) \n-Cable Bicep Curl (8x3) \nSkull Crusher (5x3) \n-Overhead Triceps Extension (7x3) \n-Plate Holding (focusing on forearms, 2x1:30 min) \nLeg raises (12x3) \nSit ups (25x3)";
+    "-Free Press on (5x5) \n-Bench Shoulder Press with Dumbells (5x4) \n-Trap Contractions (15x3) \n-Cable Lateral Raises (8x3) \n-Close hand Pull Ups (focusing on shoulder)";
 
   const text_workout =
-    "For Arms Day, take into account the following information: We will focus on the Biceps first, then on the Triceps and later on, the Forearms will be trained. Afterwards, come some abdominal exercises shall\nThe muscles groups used are ";
+    "For Shoulder Day, take into account the following information: We want to focus first on the front of the shoulder and later on the laterals. Training the traps is important as it gives stability to the back and shoulders awhole. \nThe muscles groups used are ";
 
   const image_link =
-    "https://legionathletics.com/wp-content/uploads/2019/06/upper-body-workout-biceps-anatomy.jpg";
+    "https://i0.wp.com/mgfitlife.com/wp-content/uploads/2017/08/upper-back-muscles.jpg?ssl=1";
 
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVisible2, setModalVisible2] = useState(false);
@@ -72,7 +72,7 @@ const App = () => {
         </TouchableOpacity>
       </View>
       <Text style={CommonStyles.TitleCenter}>
-        Workout for ARMS and ABS! Choose the option you want:
+        Workout for Shoulders! Choose the option you want:
       </Text>
       <View style={styles.modalContent}>
         <Modal
@@ -156,7 +156,7 @@ const App = () => {
 export default () => {
   return (
     <NativeBaseProvider>
-      <App />
+      <ShouldersDay />
     </NativeBaseProvider>
   );
 };

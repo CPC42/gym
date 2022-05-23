@@ -1,0 +1,12 @@
+const workoutTextHipertophy =
+  "-Pull Ups (8x4) \n-Cable Underhand Pulldown (5-10x4) \n-Barbell Deadlift (7x4) \nNarrow grip Barbell (8x4) \n-Calves";
+const workoutTextResistance =
+  "-Pull Ups (5x6) \n-Barbell Shrugs (15x4) \n-Barbel Curl (13x3) -nBar Bicep Curl (15x4) \n-Barbell Deadlift (15x3)";
+const workoutTextStrength =
+  "-Weighted Pull ups (8x3) \n-Cable Underhand Pulldown (4x4) \n-Barbell Deadlift (2x4) Squats \nBarbell Deadlift (5x3)";
+
+const text_workout =
+  "For Pull Day, take into account the following information: \nWe are working mostly with the upper part of our body in various ways. The goal is to do pulling exercises to improve overall strenght and posture.\n\nThe muscles groups used are ";
+
+const image_link =
+  "https://fitbod.me/wp-content/uploads/2021/12/What-Are-Pull-Muscle-Groups.jpg";

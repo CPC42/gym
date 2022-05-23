@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { NativeBaseProvider } from "native-base";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   View,
   Text,
@@ -12,6 +12,8 @@ import {
   Modal,
   TouchableHighlight,
 } from "react-native";
+
+import { UsersContext } from "../contexts/UsersContext";
 
 import { TouchableOpacity } from "react-native-gesture-handler";
 
@@ -26,8 +28,7 @@ import LegDay from "../workoutScreens/LegDay";
 import ChestDay from "../workoutScreens/ChestDay";
 import PullDay from "../workoutScreens/PullDay";
 import PushDay from "../workoutScreens/PushDay";
-import ShoulderDay from "../workoutScreens/ShoulderDay";
-import UpperBody from "../workoutScreens/UpperBody";
+import ShouldersDay from "../workoutScreens/ShouldersDay";
 
 const timeToString = (time) => {
   const date = new Date(time);
@@ -51,7 +52,15 @@ const getWeekday = (time) => {
 function Schedule() {
   const navigation = useNavigation();
 
-  const typeWorkout = "light";
+  const usersContext = useContext(UsersContext);
+
+  const typeWorkout =
+    usersContext.users[usersContext.currentUser].workoutIntensity;
+  console.log(
+    usersContext.users[usersContext.currentUser],
+    typeWorkout,
+    typeof typeWorkout
+  );
 
   var today = new Date().toISOString().slice(0, 10);
 
@@ -73,10 +82,9 @@ function Schedule() {
           ];
         }
         //const current_day = strTime.slice(-2);
-        //console.log(current_day);
         const current_Weekday = getWeekday(time);
 
-        if (typeWorkout == "light") {
+        if (typeWorkout == 1) {
           if (current_Weekday == "Monday") {
             items[strTime] = [
               {
@@ -102,7 +110,7 @@ function Schedule() {
             ];
           }
         }
-        if (typeWorkout == "medium") {
+        if (typeWorkout == 2) {
           if (current_Weekday == "Monday") {
             items[strTime] = [
               {
@@ -136,7 +144,7 @@ function Schedule() {
             ];
           }
         }
-        if (typeWorkout == "hard") {
+        if (typeWorkout == 3) {
           if (current_Weekday == "Monday") {
             items[strTime] = [
               {
@@ -148,7 +156,7 @@ function Schedule() {
           if (current_Weekday == "Tuesday") {
             items[strTime] = [
               {
-                name: "back & Biceps",
+                name: "Back & Biceps",
                 height: Math.max(50, Math.floor(Math.random() * 150)),
               },
             ];
@@ -172,7 +180,7 @@ function Schedule() {
           if (current_Weekday == "Friday") {
             items[strTime] = [
               {
-                name: "Shoulders day",
+                name: "Shoulders",
                 height: Math.max(50, Math.floor(Math.random() * 150)),
               },
             ];
@@ -195,20 +203,14 @@ function Schedule() {
     }, 1000);
   };
 
-  //const [isModalVisible, setIsModalVisible] = React.useState(true);
-  //const handleModal = () => setIsModalVisible(() => !isModalVisible);
-
   const renderItem = (item) => {
     const nextScreen = item.name.split(" ")[0] + "Day";
-    if (nextScreen == "ArmsDay") {
-      console.log(nextScreen);
-    }
 
     return (
       <View style={CommonStyles.dateText}>
         <View style={{ marginTop: 22 }}>
           <View>
-            <Card onPress={() => navigation.push(nextScreen)}>
+            <Card onPress={() => navigation.navigate(nextScreen)}>
               <Card.Content>
                 <View
                   style={{
@@ -243,22 +245,14 @@ function Schedule() {
   return (
     <View style={CommonStyles.container}>
       <View style={CommonStyles.text2}>
-        <Text>Click here to go to sign up if you do not have an account.</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
-          <Text style={CommonStyles.signupText}> SIGN UP </Text>
-        </TouchableOpacity>
+        <Text>
+          {"Welcome, " + usersContext.users[usersContext.currentUser].user}
+        </Text>
       </View>
       <View style={CommonStyles.text2}>
         <Text>Click here to go to log in.</Text>
         <TouchableOpacity onPress={() => navigation.navigate("Login")}>
           <Text style={CommonStyles.signupText}> LOGIN </Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={CommonStyles.text2}>
-        <Text>Click here to go to your workout.</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-          <Text style={CommonStyles.signupText}> Homepage </Text>
         </TouchableOpacity>
       </View>
 
