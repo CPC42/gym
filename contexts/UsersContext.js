@@ -6,12 +6,19 @@ export const UsersContext = React.createContext();
 export const UsersContextProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
+  const [userInfo, setUserInfo] = useState({
+    image_link: "",
+    workoutTextHipertophy: "",
+    workoutTextStrength: "",
+    workoutTextResistance: "",
+    text_workout: "",
+    thirdModal: "",
+    title_text: "",
+  });
 
   useEffect(() => {
     loadUsers().then((result) => setUsers(result));
   }, []);
-
-  console.log(users);
 
   const addUser = (user, email, password, workoutType, workoutIntensity) => {
     setCurrentUser(users.length);
@@ -34,7 +41,9 @@ export const UsersContextProvider = ({ children }) => {
   };
 
   return (
-    <UsersContext.Provider value={{ users, currentUser, addUser, editUser }}>
+    <UsersContext.Provider
+      value={{ users, currentUser, addUser, editUser, userInfo, setUserInfo }}
+    >
       {children}
     </UsersContext.Provider>
   );

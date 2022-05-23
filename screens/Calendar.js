@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { NativeBaseProvider } from "native-base";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   View,
   Text,
@@ -28,6 +28,8 @@ import PullDay from "../workoutScreens/PullDay";
 import PushDay from "../workoutScreens/PushDay";
 import ShouldersDay from "../workoutScreens/ShouldersDay";
 
+import { UsersContext } from "../contexts/UsersContext";
+
 const timeToString = (time) => {
   const date = new Date(time);
   return date.toISOString().split("T")[0];
@@ -52,6 +54,8 @@ function Schedule() {
 
   const typeWorkout = "hard";
 
+  const usersContext = useContext(UsersContext);
+
   var today = new Date().toISOString().slice(0, 10);
 
   // values = { [date]: [{ name: "Arms day" }], [today]: [{ name: "Leg day" }] };
@@ -72,7 +76,6 @@ function Schedule() {
           ];
         }
         //const current_day = strTime.slice(-2);
-        //console.log(current_day);
         const current_Weekday = getWeekday(time);
 
         if (typeWorkout == "light") {
@@ -194,9 +197,6 @@ function Schedule() {
     }, 1000);
   };
 
-  //const [isModalVisible, setIsModalVisible] = React.useState(true);
-  //const handleModal = () => setIsModalVisible(() => !isModalVisible);
-
   const renderItem = (item) => {
     const nextScreen = item.name.split(" ")[0] + "Day";
 
@@ -204,7 +204,7 @@ function Schedule() {
       <View style={CommonStyles.dateText}>
         <View style={{ marginTop: 22 }}>
           <View>
-            <Card onPress={() => navigation.push(nextScreen)}>
+            <Card onPress={() => navigation.navigate(nextScreen)}>
               <Card.Content>
                 <View
                   style={{
