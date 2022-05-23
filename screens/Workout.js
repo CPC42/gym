@@ -19,37 +19,8 @@ function Workout() {
   return (
     <View style={CommonStyles.container}>
       <View style={CommonStyles.text2}>
-        <Text>Click here to go to sign up if you do not have an account.</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
-          <Text style={CommonStyles.signupText}> SIGN UP </Text>
-        </TouchableOpacity>
+        <Text>Please, select the type of workout you want!</Text>
       </View>
-
-      <View style={CommonStyles.text2}>
-        <Text>Click here to go to log in.</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-          <Text style={CommonStyles.signupText}> LOGIN </Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={CommonStyles.text2}>
-        <Text>Click here to go to your calendar.</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Calendar")}>
-          <Text style={CommonStyles.signupText}> Calendar </Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={CommonStyles.tinyLogo}>
-        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-          <Image
-            style={CommonStyles.tinyLogo}
-            source={{
-              uri: "http://cdn.onlinewebfonts.com/svg/img_159611.png",
-            }}
-          />
-        </TouchableOpacity>
-      </View>
-
       <View
         style={[
           CommonStyles.buttonStyle,
@@ -140,7 +111,7 @@ function Workout() {
           title="Save"
           onPress={() => {
             usersContext.editUser(typeOp, intensityOp);
-            navigation.navigate("Calendar");
+            navigation.push("Calendar");
           }}
         />
       </View>

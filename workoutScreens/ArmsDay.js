@@ -44,31 +44,9 @@ const App = () => {
         </TouchableOpacity>
       </View>
       <View style={CommonStyles.text2}>
-        <Text>Click here to go to sign up if you do not have an account.</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
-          <Text style={CommonStyles.signupText}> SIGN UP </Text>
-        </TouchableOpacity>
-      </View>
-      <View style={CommonStyles.text2}>
-        <Text>Click here to go to log in.</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-          <Text style={CommonStyles.signupText}> LOGIN </Text>
-        </TouchableOpacity>
-      </View>
-      <View style={CommonStyles.text2}>
         <Text>Click here to go to your calendar.</Text>
         <TouchableOpacity onPress={() => navigation.navigate("Calendar")}>
           <Text style={CommonStyles.signupText}> Calendar </Text>
-        </TouchableOpacity>
-      </View>
-      <View style={CommonStyles.tinyLogo}>
-        <TouchableOpacity onPress={() => navigation.navigate("Workout")}>
-          <Image
-            style={CommonStyles.tinyLogo}
-            source={{
-              uri: "https://cdn.pixabay.com/photo/2016/01/03/11/24/gear-1119298_1280.png",
-            }}
-          />
         </TouchableOpacity>
       </View>
       <Text style={CommonStyles.TitleCenter}>
