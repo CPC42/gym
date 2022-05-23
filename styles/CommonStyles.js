@@ -95,7 +95,13 @@ export const CommonStyles = StyleSheet.create({
     marginTop: 30,
     marginLeft: 15,
     marginRight: 15,
-    backgroundColor: "#88AC24",
+    backgroundColor: "#33FFAC",
+  },
+  buttonStyle3: {
+    marginTop: 30,
+    marginLeft: 15,
+    marginRight: 15,
+    backgroundColor: "#C1ABE6",
   },
   buttonStyleX: {
     marginTop: 12,
@@ -127,7 +133,7 @@ export const CommonStyles = StyleSheet.create({
   button: {
     paddingLeft: 20,
     paddingRigth: 20,
-    backgroundColor: "DD33FF",
+    color: "white",
     height: 40,
     width: 160,
     borderRadius: 10,
@@ -138,7 +144,7 @@ export const CommonStyles = StyleSheet.create({
   button2: {
     paddingLeft: 20,
     paddingRigth: 20,
-    backgroundColor: "#88AC24",
+    color: "white",
     height: 40,
     width: 160,
     borderRadius: 10,

@@ -265,7 +265,6 @@ function Signup() {
       <View style={CommonStyles.buttonStyle}>
         <Button
           onPress={() => {
-            console.log("aaaaaaa");
             usersContext.addUser(
               userData.user,
               userData.email,
@@ -273,7 +272,6 @@ function Signup() {
               userData.workType,
               userData.workIntesity
             );
-            console.log("bbbbbbbb");
             navigation.navigate("Workout");
           }}
           style={[

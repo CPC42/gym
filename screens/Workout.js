@@ -15,15 +15,21 @@ function Workout() {
   const [typeOp, setTypeOp] = useState(0);
   const navigation = useNavigation();
   const usersContext = useContext(UsersContext);
-  console.log(usersContext.currentUser);
   return (
     <View style={CommonStyles.container}>
-      <View style={CommonStyles.text2}>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          paddingTop: 5,
+          top: 20,
+        }}
+      >
         <Text>Please, select the type of workout you want!</Text>
       </View>
       <View
         style={[
-          CommonStyles.buttonStyle,
+          CommonStyles.buttonStyle3,
           { opacity: intensityOp === 1 ? 1 : 0.7 },
         ]}
       >
@@ -38,7 +44,7 @@ function Workout() {
 
       <View
         style={[
-          CommonStyles.buttonStyle,
+          CommonStyles.buttonStyle3,
           { opacity: intensityOp === 2 ? 1 : 0.7 },
         ]}
       >
@@ -53,7 +59,7 @@ function Workout() {
 
       <View
         style={[
-          CommonStyles.buttonStyle,
+          CommonStyles.buttonStyle3,
           { opacity: intensityOp === 3 ? 1 : 0.7 },
         ]}
       >
@@ -104,7 +110,7 @@ function Workout() {
         style={[
           { display: typeOp === 0 && intensityOp == 0 ? "none" : "flex" },
           { marginTop: 60 },
-          { backgroundColor: "green" },
+          { backgroundColor: "#CBF10D" },
         ]}
       >
         <Button

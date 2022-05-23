@@ -180,9 +180,7 @@ function Login() {
       <View style={CommonStyles.buttonStyle}>
         <Button
           onPress={() => {
-            console.log(logUser.verEmail && logUser.verPassword);
             usersContext.setCurrentUser(logUser.current);
-            console.log(usersContext.currentUser);
             navigation.navigate("Calendar");
           }}
           style={[

@@ -248,7 +248,7 @@ function Schedule() {
       nameWorkout = "medium";
       break;
     case 1:
-      nameWorkout = "ligth";
+      nameWorkout = "light";
   }
 
   return (
