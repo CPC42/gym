@@ -134,7 +134,7 @@ function Workout() {
           title="Save"
           onPress={() => {
             usersContext.editUser(typeOp, intensityOp);
-            navigation.navigate("Home");
+            navigation.navigate("Calendar");
           }}
         />
       </View>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Alert,
   Modal,
@@ -12,8 +12,11 @@ import { CommonStyles, styles } from "../styles/CommonStyles";
 import { NativeBaseProvider } from "native-base";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
+import { UsersContext } from "../contexts/UsersContext";
 
 const App = () => {
+  const usersContext = useContext(UsersContext);
+  console.log(usersContext.currentUser);
   const navigation = useNavigation();
 
   const [modalVisible, setModalVisible] = useState(false);

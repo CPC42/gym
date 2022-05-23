@@ -2,13 +2,88 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { Input, NativeBaseProvider, Button, Icon } from "native-base";
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
-
+import { UsersContext } from "../contexts/UsersContext";
 import { CommonStyles } from "../styles/CommonStyles";
 
 function Login() {
   const navigation = useNavigation();
+  const [logUser, setLogUser] = useState({
+    current: -1,
+    emailMsg: "* Incorrect email format",
+    verEmail: false,
+    passwordMsg: "* Please introduce first an existing email",
+    verPassword: false,
+  });
+
+  const [passwordTxt, setPasswordxt] = useState("");
+  const usersContext = useContext(UsersContext);
+  checkEmail = (email) => {
+    var index = usersContext.users.findIndex(
+      (object) => object.email === email
+    );
+    setPasswordxt("");
+    if (
+      email
+        .toLowerCase()
+        .match(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        )
+    ) {
+      if (index >= 0) {
+        setLogUser({
+          ...logUser,
+          current: index,
+          verEmail: true,
+          passwordMsg: "*",
+        });
+      } else {
+        setLogUser({
+          ...logUser,
+          current: -1,
+          emailMsg:
+            "* User with this email not found. Sign up or introduce an existing user email",
+          verEmail: false,
+          verPassword: false,
+          passwordMsg: "* * Incorrect password format",
+        });
+      }
+    } else {
+      setLogUser({
+        ...logUser,
+        current: -1,
+        emailMsg: "* Incorrect email format",
+        passwordMsg: "* Incorrect password format",
+        verPassword: false,
+      });
+    }
+  };
+
+  checkPass = (password) => {
+    const newState = [...usersContext.users];
+    if (password.match(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/)) {
+      if (password === newState[logUser.current].password) {
+        setLogUser({
+          ...logUser,
+          passwordMsg: "* Matching email and password",
+          verPassword: true,
+        });
+      } else {
+        setLogUser({
+          ...logUser,
+          passwordMsg: "* Email and password not matching",
+          verPassword: false,
+        });
+      }
+    } else {
+      setLogUser({
+        ...logUser,
+        passwordMsg: "* Incorrect password format",
+        verPassword: false,
+      });
+    }
+  };
   return (
     <View style={CommonStyles.container}>
       <View style={CommonStyles.text2}>
@@ -39,6 +114,7 @@ function Login() {
       <View style={CommonStyles.buttonStyle}>
         <View style={CommonStyles.emailInput}>
           <Input
+            onChangeText={(text) => checkEmail(text)}
             InputLeftElement={
               <Icon
                 as={<FontAwesome5 name="user-secret" />}
@@ -53,7 +129,7 @@ function Login() {
               />
             }
             variant="outline"
-            placeholder="Username or Email"
+            placeholder="Email"
             _light={{
               placeholderTextColor: "blueGray.400",
             }}
@@ -62,6 +138,9 @@ function Login() {
             }}
           />
         </View>
+        <Text style={{ color: logUser.verEmail ? "green" : "red" }}>
+          {logUser.emailMsg}
+        </Text>
       </View>
 
       {/* Password Input Field */}
@@ -81,7 +160,13 @@ function Login() {
                 }}
               />
             }
+            onChangeText={(text) => {
+              checkPass(text);
+              setPasswordxt(text);
+            }}
+            editable={logUser.current === -1 ? false : true}
             variant="outline"
+            value={passwordTxt}
             secureTextEntry
             placeholder="Password"
             _light={{
@@ -92,13 +177,35 @@ function Login() {
             }}
           />
         </View>
+        <Text
+          style={{
+            color:
+              logUser.current >= -1 && logUser.verPassword ? "green" : "red",
+          }}
+        >
+          {logUser.current === -1
+            ? "* Please introduce first an existing email"
+            : logUser.passwordMsg}
+        </Text>
       </View>
 
       {/* Button */}
       <View style={CommonStyles.buttonStyle}>
-        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-          <Button style={CommonStyles.buttonDesign}>LOGIN</Button>
-        </TouchableOpacity>
+        <Button
+          onPress={() => {
+            console.log(logUser.verEmail && logUser.verPassword);
+            usersContext.setCurrentUser(logUser.current);
+            console.log(usersContext.currentUser);
+            navigation.navigate("Calendar");
+          }}
+          style={[
+            CommonStyles.buttonDesign,
+            { opacity: logUser.verEmail && logUser.verPassword ? 1 : 0.5 },
+          ]}
+          disabled={logUser.verEmail && logUser.verPassword ? false : true}
+        >
+          LOGIN
+        </Button>
       </View>
 
       <StatusBar style="auto" />

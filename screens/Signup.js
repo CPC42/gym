@@ -22,16 +22,32 @@ function Signup() {
   });
   const [verify, setVerify] = useState({
     user: false,
+    userMsg: "",
     email: false,
+    emailMsg: "",
     password: false,
     secondPassword: false,
   });
 
   const checkUser = (text) => {
     if (text.match(/(?=.{4,})/)) {
-      setVerify({ ...verify, user: true });
+      if (
+        -1 === usersContext.users.findIndex((object) => object.user === text)
+      ) {
+        setVerify({ ...verify, user: true, userMsg: "* Available user" });
+      } else {
+        setVerify({
+          ...verify,
+          user: false,
+          userMsg: "* Already existing user",
+        });
+      }
     } else {
-      setVerify({ ...verify, user: false });
+      setVerify({
+        ...verify,
+        user: false,
+        userMsg: "* Please introduce at least 4 character for your username",
+      });
     }
   };
   const checkEmail = (text) => {
@@ -42,9 +58,24 @@ function Signup() {
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         )
     ) {
-      setVerify({ ...verify, email: true });
+      if (
+        -1 === usersContext.users.findIndex((object) => object.email === text)
+      ) {
+        setVerify({ ...verify, email: true, emailMsg: "* Available email" });
+      } else {
+        setVerify({
+          ...verify,
+          email: false,
+          emailMsg:
+            "* Already existing user. Please log in or use a different email",
+        });
+      }
     } else {
-      setVerify({ ...verify, email: false });
+      setVerify({
+        ...verify,
+        email: false,
+        emailMsg: "* Please introduce an existing email",
+      });
     }
   };
   const checkPass = (text) => {
@@ -124,9 +155,7 @@ function Signup() {
           />
         </View>
         <Text style={{ color: verify.user ? "green" : "red" }}>
-          {verify.user
-            ? "* Correct Username"
-            : "* Please introduce at least 4 character for your username"}
+          {verify.userMsg}
         </Text>
       </View>
 
@@ -162,7 +191,7 @@ function Signup() {
           />
         </View>
         <Text style={{ color: verify.email ? "green" : "red" }}>
-          {verify.email ? "* Correct Email" : "* Incorrect email format"}
+          {verify.emailMsg}
         </Text>
       </View>
 
