@@ -260,28 +260,6 @@ function Schedule() {
           two months!
         </Text>
       </View>
-      <View style={CommonStyles.tinyLogo}>
-        <TouchableOpacity onPress={() => navigation.navigate("Workout")}>
-          <Image
-            style={CommonStyles.tinyLogo}
-            source={{
-              uri: "https://cdn.pixabay.com/photo/2016/01/03/11/24/gear-1119298_1280.png",
-            }}
-          />
-        </TouchableOpacity>
-      </View>
-
-      <View style={CommonStyles.tinyLogo}>
-        <TouchableOpacity onPress={() => navigation.navigate("Workout")}>
-          <Image
-            style={CommonStyles.tinyLogo}
-            source={{
-              uri: "https://cdn.pixabay.com/photo/2016/01/03/11/24/gear-1119298_1280.png",
-            }}
-          />
-        </TouchableOpacity>
-      </View>
-
       <View style={CommonStyles.calendar}>
         <Agenda
           items={items}
