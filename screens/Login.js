@@ -35,6 +35,7 @@ function Login() {
         setLogUser({
           ...logUser,
           current: index,
+          emailMsg: "* Email found",
           verEmail: true,
           passwordMsg: "*",
         });
